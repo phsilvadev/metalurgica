@@ -156,8 +156,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
-              O poder do aço com uma empresa de confiança. Soluções completas em
-              estruturas metálicas com qualidade, segurança e agilidade.
+              Garantindo o desenvolvimento do seu negócio
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
