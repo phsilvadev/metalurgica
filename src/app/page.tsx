@@ -149,9 +149,10 @@ export default function Home() {
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-28 items-center relative z-10">
           <div className="space-y-6 me-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
-              Estruturas Metálicas em{" "}
+              Rrocurando empresa especializada em estruturas metálicas{"  "}{" "}
+              <br />
               <span className="text-red-600 relative">
-                Balsas MA
+                A Metalúrgica Moreira
                 <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-red-500 rounded"></span>
               </span>
             </h1>
