@@ -31,7 +31,7 @@ export const DetailsComponent = ({
   };
 
   return (
-    <div className="bg-[rgba(0,0,0,0.84)] fixed w-screen h-screen top-0 left-0 z-[999999] flex justify-center items-center">
+    <div className="bg-[rgba(0,0,0,0.84)] fixed w-screen h-screen top-0 left-0 z-[999999] hidden justify-center items-center">
       <Image
         onClick={onClose}
         src={require("@public/close-1.svg")}
