@@ -47,7 +47,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <DetailsComponent />
+      <DetailsComponent
+        open={false}
+        onClose={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -207,6 +212,57 @@ export default function Home() {
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown size={32} className="text-gray-600" />
+        </div>
+      </section>
+
+      <section className="flex justify-end items-center relative overflow-hidden">
+        <div className="w-[60%] text-[#fff] bg-background h-[1500px] rounded-[100%] absolute left-[-200px] flex justify-center items-center">
+          <section className="w-[45%]">
+            <div className="mb-[50px]">
+              <h1 className="text-[3.5em] font-bold">ONDE ATUAMOS</h1>
+              <h5>Nas seguintes região do Brasil</h5>
+            </div>
+            <p className="text-[1.3em] font-light">
+              <strong className="font-bold">Metalúrgica Moreira</strong> está
+              presente estrategicamente nas regiões Norte e Nordeste do Brasil,
+              oferecendo soluções metalúrgicas sob medida com agilidade,
+              qualidade e compromisso
+            </p>
+
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="flex items-center mt-[70px] justify-center gap-2 bg-[#fff] text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <Calculator size={20} />
+              Solicitar Orçamento
+            </button>
+          </section>
+        </div>
+        <div className="w-[50%]  ps-[100px] pt-[100px]">
+          <Image
+            src={require("@public/map-sem-fundo.png")}
+            alt=""
+            className="w-[70%] "
+          />
+          <section className="p-5 flex gap-[10%]">
+            {[
+              ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
+              [
+                "Rondônia (RO)",
+                "Roraima (RR)",
+                "Tocantins (TO)",
+                "Alagoas (AL)",
+              ],
+              ["Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)"],
+              ["Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
+            ].map((item) => (
+              <ul>
+                {item.map((subItem) => (
+                  <li className="mb-2">{subItem}</li>
+                ))}
+              </ul>
+            ))}
+          </section>
         </div>
       </section>
 

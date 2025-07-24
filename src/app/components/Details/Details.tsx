@@ -55,7 +55,7 @@ export const DetailsComponent = ({
 
       <button
         onClick={nextSlide}
-        className="absolute right-5 text-3xl z-50 p-[15px] px-[18px] bg-[#fff] rounded-[100px]"
+        className="absolute righst-5 text-3xl z-50 p-[15px] px-[18px] bg-[#fff] rounded-[100px]"
       >
         ➡
       </button>
