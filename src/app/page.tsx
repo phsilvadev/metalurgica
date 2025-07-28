@@ -16,6 +16,8 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import Link from "next/link";
+import { DetailsComponent } from "./components/Details/Details";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,6 +47,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <DetailsComponent
+        open={false}
+        onClose={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -149,16 +157,19 @@ export default function Home() {
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-28 items-center relative z-10">
           <div className="space-y-6 me-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
-              Rrocurando empresa especializada em estruturas metálicas{"  "}{" "}
-              <br />
-              <span className="text-red-600 relative">
-                A Metalúrgica Moreira
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-red-500 rounded"></span>
-              </span>
+              <div className="text-[0.7em] font-medium">
+                Buscando soluções profissionais em estruturas metálicas?
+              </div>
+
+              <div className="text-red-600 relative mt-4 font-extrabold">
+                METALÚRGICA MOREIRA
+                <span className="absolute bottom-0 left-0 w-full h-1 from-red-600 to-red-500 rounded"></span>
+              </div>
+              <p className="text-lg text-gray-600 font-normal leading-relaxed">
+                Garantindo o desenvolmento do seu negocio
+              </p>
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Garantindo o desenvolvimento do seu negócio
-            </p>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollToSection("contact")}
@@ -175,19 +186,83 @@ export default function Home() {
                 Entre em Contato
               </button>
             </div>
+
+            <div className="flex">
+              <Link href={"#"}>
+                <Image src={require("@public/social/instagram.png")} alt="" />
+              </Link>
+              <Link href={"#"}>
+                <Image src={require("@public/social/whatsapp.png")} alt="" />
+              </Link>
+              <Link href={"#"}>
+                <Image src={require("@public/social/facebook.png")} alt="" />
+              </Link>
+            </div>
           </div>
           <div className="relative">
             <Image
-              src="/estrutura_metalica_1.jpg"
+              src="/imagem-section.svg"
               alt="Estrutura Metálica"
               width={600}
               height={500}
-              className="rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
+              // className="rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
+              className="rounded-2xl hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown size={32} className="text-gray-600" />
+        </div>
+      </section>
+
+      <section className="flex justify-end items-center relative overflow-hidden">
+        <div className="w-[60%] text-[#fff] bg-background h-[1500px] rounded-[100%] absolute left-[-200px] flex justify-center items-center">
+          <section className="w-[45%]">
+            <div className="mb-[50px]">
+              <h1 className="text-[3.5em] font-bold">ONDE ATUAMOS</h1>
+              <h5>Nas seguintes região do Brasil</h5>
+            </div>
+            <p className="text-[1.3em] font-light">
+              <strong className="font-bold">Metalúrgica Moreira</strong> está
+              presente estrategicamente nas regiões Norte e Nordeste do Brasil,
+              oferecendo soluções metalúrgicas sob medida com agilidade,
+              qualidade e compromisso
+            </p>
+
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="flex items-center mt-[70px] justify-center gap-2 bg-[#fff] text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <Calculator size={20} />
+              Solicitar Orçamento
+            </button>
+          </section>
+        </div>
+        <div className="w-[50%]  ps-[100px] pt-[100px]">
+          <Image
+            src={require("@public/map-sem-fundo.png")}
+            alt=""
+            className="w-[70%] "
+          />
+          <section className="p-5 flex gap-[10%]">
+            {[
+              ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
+              [
+                "Rondônia (RO)",
+                "Roraima (RR)",
+                "Tocantins (TO)",
+                "Alagoas (AL)",
+              ],
+              ["Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)"],
+              ["Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
+            ].map((item) => (
+              <ul>
+                {item.map((subItem) => (
+                  <li className="mb-2">{subItem}</li>
+                ))}
+              </ul>
+            ))}
+          </section>
         </div>
       </section>
 
@@ -235,7 +310,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      {/* <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -321,10 +396,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      {/* <section id="about" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -392,14 +467,14 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Gallery Section */}
       <section id="gallery" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Galeria de Obras
+              Galeria de Fotos
             </h2>
             <p className="text-lg text-gray-600">
               Conheça alguns dos nossos projetos realizados
@@ -413,28 +488,28 @@ export default function Home() {
                 image: "/estrutura_metalica_1.jpg",
                 title: "Galpão Industrial",
                 desc: "Estrutura completa para indústria",
-                category: "Industrial",
+                category: "",
               },
               {
                 slug: "cobertura-metalica",
                 image: "/estrutura_metalica_2.jpg",
                 title: "Cobertura Metálica",
                 desc: "Cobertura para área comercial",
-                category: "Comercial",
+                category: "",
               },
               {
                 slug: "estrutura-predial",
                 image: "/estrutura_metalica_3.jpg",
                 title: "Estrutura Predial",
                 desc: "Edifício em estrutura metálica",
-                category: "Predial",
+                category: "",
               },
               {
                 slug: "projeto-residencial",
                 image: "/estrutura_metalica_7.jpg",
                 title: "Projeto Residencial",
                 desc: "Casa em estrutura metálica",
-                category: "Residencial",
+                category: "",
               },
             ].map((item, index) => (
               <a
@@ -450,15 +525,17 @@ export default function Home() {
                   className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {item.category}
-                  </span>
+                  {item.category && (
+                    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {item.category}
+                    </span>
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-6 left-6 text-white">
-                    <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
-                    <p className="text-gray-300 mb-3">{item.desc}</p>
-                    <span className="inline-flex items-center text-sm font-medium text-red-300">
+                    {/* <h4 className="text-lg font-semibold mb-2">{item.title}</h4> */}
+                    {/* <p className="text-gray-300 mb-3">{item.desc}</p> */}
+                    {/* <span className="inline-flex items-center text-sm font-medium text-red-300">
                       Ver detalhes
                       <svg
                         className="w-4 h-4 ml-1"
@@ -473,7 +550,7 @@ export default function Home() {
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                    </span>
+                    </span> */}
                   </div>
                 </div>
               </a>
