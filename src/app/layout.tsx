@@ -5,25 +5,25 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Embrafer - Estruturas Metálicas em Balsas MA",
+  title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
   description:
     "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas com qualidade, segurança e agilidade em Balsas MA.",
   keywords:
     "estruturas metálicas, Balsas MA, construção, aço, galpões, coberturas metálicas, torres, telecomunicações",
-  authors: [{ name: "Embrafer" }],
+  authors: [{ name: "Metalúrgica Moreira" }],
   viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
-    title: "Embrafer - Estruturas Metálicas em Balsas MA",
+    title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
     description:
       "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas.",
     type: "website",
     locale: "pt_BR",
-    siteName: "Embrafer",
+    siteName: "Metalúrgica Moreira",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Embrafer - Estruturas Metálicas em Balsas MA",
+    title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
     description:
       "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas.",
   },

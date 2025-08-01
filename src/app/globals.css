@@ -4,6 +4,7 @@
 
 :root {
   --background: #ba181d;
+  --colo: #ba181d;
 }
 
 @layer base {
@@ -56,7 +57,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dc2626;
+  background: #ba181d;
   border-radius: 4px;
 }
 
@@ -68,7 +69,7 @@
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #dc2626;
+  outline: 2px solid #ba181d;
   outline-offset: 2px;
 }
 
@@ -107,7 +108,7 @@ p {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #dc2626, #ef4444);
+  background: linear-gradient(135deg, #ba181d, #ef4444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

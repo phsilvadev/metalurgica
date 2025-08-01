@@ -17,11 +17,21 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
+
+import ListServices from "./components/ListServices/ListServices";
 import { DetailsComponent } from "./components/Details/Details";
+import { IMAGENS } from "./mock/imagens";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [img, setImag] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleOpenModalImage = (slug: string) => {
+    setImag(slug);
+    setOpen(true);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,19 +50,9 @@ export default function Home() {
     setIsMenuOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-  };
-
   return (
     <div className="min-h-screen bg-white">
-      <DetailsComponent
-        open={false}
-        onClose={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <DetailsComponent slug={img} open={open} onClose={() => setOpen(false)} />
       {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           <ul className="hidden md:flex space-x-8">
-            {["home", "services", "about", "gallery", "careers", "contact"].map(
+            {["home", "services", "gallery", "careers", "contact"].map(
               (item) => (
                 <li key={item}>
                   {item === "careers" ? (
@@ -89,7 +89,6 @@ export default function Home() {
                     >
                       {item === "home" && "Início"}
                       {item === "services" && "Serviços"}
-                      {item === "about" && "Sobre"}
                       {item === "gallery" && "Galeria"}
                       {item === "contact" && "Contato"}
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
@@ -137,7 +136,6 @@ export default function Home() {
                   >
                     {item === "home" && "Início"}
                     {item === "services" && "Serviços"}
-                    {item === "about" && "Sobre"}
                     {item === "gallery" && "Galeria"}
                     {item === "contact" && "Contato"}
                   </button>
@@ -153,27 +151,28 @@ export default function Home() {
         id="home"
         className="min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
+        <div className="absolute inset-0  opacity-30"></div>
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-28 items-center relative z-10">
           <div className="space-y-6 me-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               <div className="text-[0.7em] font-medium">
-                Buscando soluções profissionais em estruturas metálicas?
+                Buscando soluções profissionais em estruturas metálicas e
+                concreto pré-moldado?
               </div>
 
-              <div className="text-red-600 relative mt-4 font-extrabold">
+              <div className="text-colo relative mt-4 font-extrabold">
                 METALÚRGICA MOREIRA
                 <span className="absolute bottom-0 left-0 w-full h-1 from-red-600 to-red-500 rounded"></span>
               </div>
               <p className="text-lg text-gray-600 font-normal leading-relaxed">
-                Garantindo o desenvolmento do seu negocio
+                Garantindo o desenvolmento do seu negócio
               </p>
             </h1>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollToSection("contact")}
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="flex items-center justify-center gap-2 bg-background text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 <Calculator size={20} />
                 Solicitar Orçamento
@@ -201,11 +200,10 @@ export default function Home() {
           </div>
           <div className="relative">
             <Image
-              src="/imagem-section.svg"
+              src="/section-image-one.svg"
               alt="Estrutura Metálica"
               width={600}
               height={500}
-              // className="rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
               className="rounded-2xl hover:scale-105 transition-transform duration-300"
             />
           </div>
@@ -240,7 +238,7 @@ export default function Home() {
         </div>
         <div className="w-[50%]  ps-[100px] pt-[100px]">
           <Image
-            src={require("@public/map-sem-fundo.png")}
+            src={require("@public/map-sem-fundo.svg")}
             alt=""
             className="w-[70%] "
           />
@@ -266,7 +264,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Nossos Serviços
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Soluções completas em estruturas metálicas para todos os tipos de
+              projetos
+            </p>
+          </div>
+
+          <ListServices />
+        </div>
+      </section>
+
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
@@ -296,7 +309,7 @@ export default function Home() {
                 key={index}
                 className="text-center group hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="w-20 h-20 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
+                <div className="w-20 h-20 bg-background from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
                   <feature.icon size={32} className="text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -310,93 +323,6 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      {/* <section id="services" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Nossos Serviços
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Soluções completas em estruturas metálicas para todos os tipos de
-              projetos
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                image: "/estrutura_metalica_2.jpg",
-                title: "Coberturas Metálicas",
-                desc: "Coberturas resistentes e duráveis para galpões, armazéns e edificações comerciais.",
-                items: [
-                  "Galpões industriais",
-                  "Armazéns graneleiros",
-                  "Coberturas esportivas",
-                ],
-              },
-              {
-                image: "/estrutura_metalica_3.jpg",
-                title: "Estruturas Prediais",
-                desc: "Estruturas completas para edifícios residenciais e comerciais.",
-                items: [
-                  "Casas e sobrados",
-                  "Edifícios comerciais",
-                  "Mezaninos",
-                ],
-              },
-              {
-                image: "/estrutura_metalica_4.jpg",
-                title: "Torres e Telecomunicações",
-                desc: "Torres metálicas para telecomunicações com projeto personalizado.",
-                items: [
-                  "Torres autoportantes",
-                  "Torres estaiadas",
-                  "Monopostes",
-                ],
-              },
-              {
-                image: "/estrutura_metalica_5.jpg",
-                title: "Escadas e Passarelas",
-                desc: "Escadas metálicas e passarelas para interior e exterior.",
-                items: [
-                  "Escadas industriais",
-                  "Passarelas de acesso",
-                  "Guarda-corpos",
-                ],
-              },
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="h-48 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={400}
-                    height={200}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{service.desc}</p>
-                  <ul className="space-y-2">
-                    {service.items.map((item, idx) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <span className="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* About Section */}
       {/* <section id="about" className="py-20 bg-white">
@@ -482,55 +408,20 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
-              {
-                slug: "galpao-industrial",
-                image: "/estrutura_metalica_1.jpg",
-                title: "Galpão Industrial",
-                desc: "Estrutura completa para indústria",
-                category: "",
-              },
-              {
-                slug: "cobertura-metalica",
-                image: "/estrutura_metalica_2.jpg",
-                title: "Cobertura Metálica",
-                desc: "Cobertura para área comercial",
-                category: "",
-              },
-              {
-                slug: "estrutura-predial",
-                image: "/estrutura_metalica_3.jpg",
-                title: "Estrutura Predial",
-                desc: "Edifício em estrutura metálica",
-                category: "",
-              },
-              {
-                slug: "projeto-residencial",
-                image: "/estrutura_metalica_7.jpg",
-                title: "Projeto Residencial",
-                desc: "Casa em estrutura metálica",
-                category: "",
-              },
-            ].map((item, index) => (
+            {IMAGENS.slice(0, 4).map((item, index) => (
               <a
                 key={index}
-                href={`/gallery/${item.slug}`}
+                onClick={() => handleOpenModalImage(item.slug)}
                 className="relative group overflow-hidden rounded-2xl cursor-pointer block hover:-translate-y-2 transition-all duration-300"
               >
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.slug}
                   width={400}
                   height={300}
                   className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute top-4 left-4">
-                  {item.category && (
-                    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {item.category}
-                    </span>
-                  )}
-                </div>
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-6 left-6 text-white">
                     {/* <h4 className="text-lg font-semibold mb-2">{item.title}</h4> */}
@@ -560,7 +451,7 @@ export default function Home() {
           <div className="text-center">
             <a
               href="/gallery"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-background text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
               <svg
                 className="w-5 h-5"
@@ -598,7 +489,11 @@ export default function Home() {
 
               <div className="space-y-6">
                 {[
-                  { icon: Phone, title: "Telefone", info: "(41) 3082-8850" },
+                  {
+                    icon: Phone,
+                    title: "Telefone",
+                    info: "(99) 98814-7920 / (99) 98451-0890 / (99) 99144-6287",
+                  },
                   {
                     icon: "envelope",
                     title: "Email",
@@ -611,7 +506,7 @@ export default function Home() {
                   },
                 ].map((contact, index) => (
                   <div key={index} className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-background rounded-lg flex items-center justify-center">
                       {contact.icon === Phone ? (
                         <Phone size={24} className="text-white" />
                       ) : contact.icon === "envelope" ? (
@@ -648,8 +543,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-gray-50 rounded-2xl">
+              <iframe
+                className="w-full h-full"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.5987340788447!2d-46.0394201!3d-7.509470899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92d5ef60c6a2f87b%3A0x5a00d29b7df8f416!2sMetal%C3%BArgica%20Moreira!5e0!3m2!1spt-BR!2sbr!4v1754004927875!5m2!1spt-BR!2sbr"
+                // width="760"
+                // height="450"
+                loading="lazy"
+                //@ts-ignore
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+              {/* <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
                     type="text"
@@ -695,7 +599,7 @@ export default function Home() {
                   </svg>
                   Enviar Mensagem
                 </button>
-              </form>
+              </form> */}
             </div>
           </div>
         </div>
@@ -741,7 +645,7 @@ export default function Home() {
               <div className="space-y-2 text-gray-300">
                 <p className="flex items-center gap-2">
                   <Phone size={16} />
-                  (41) 3082-8850
+                  (99) 99144-6287
                 </p>
                 <p className="flex items-center gap-2">
                   <svg
