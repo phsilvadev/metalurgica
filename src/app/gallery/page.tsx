@@ -3,14 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Filter, Grid, List } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { IMAGENS } from "../mock/imagens";
 import { DetailsComponent } from "../components/Details/Details";
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-
   const [img, setImag] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -38,31 +35,6 @@ export default function GalleryPage() {
                 <h1 className="text-2xl font-bold text-gray-800">
                   Galeria de Fotos
                 </h1>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-md transition-colors duration-300 ${
-                    viewMode === "grid"
-                      ? "bg-white text-red-600 shadow-sm"
-                      : "text-gray-600 hover:text-gray-800"
-                  }`}
-                >
-                  <Grid size={18} />
-                </button>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-md transition-colors duration-300 ${
-                    viewMode === "list"
-                      ? "bg-white text-red-600 shadow-sm"
-                      : "text-gray-600 hover:text-gray-800"
-                  }`}
-                >
-                  <List size={18} />
-                </button>
               </div>
             </div>
           </div>
@@ -100,54 +72,30 @@ export default function GalleryPage() {
       {/* Gallery Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          {viewMode === "grid" ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {IMAGENS.map((item, index) => (
-                <Link
-                  href={""}
-                  key={index}
-                  onClick={() => handleOpenModalImage(item.slug)}
-                  className="group block"
-                >
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                    <div className="relative h-64 overflow-hidden">
+          <div className="space-y-6">
+            {IMAGENS.map((item, index) => (
+              <Link
+                href={""}
+                key={index}
+                onClick={() => handleOpenModalImage(item.slug)}
+                className="group block"
+              >
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="md:flex">
+                    <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden">
                       <Image
                         src={item.image}
                         alt={item.slug}
                         width={400}
                         height={300}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                   </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {IMAGENS.map((item, index) => (
-                <Link
-                  key={index}
-                  href={`/gallery/${item.slug}`}
-                  className="group block"
-                >
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className="md:flex">
-                      <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.slug}
-                          width={400}
-                          height={300}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

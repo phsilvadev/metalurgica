@@ -1,5 +1,7 @@
 "use client";
 
+import MapNot from "@public/map-sem-fundo.svg";
+import Logo from "@public/logo.svg";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
@@ -10,18 +12,17 @@ import {
   Shield,
   Leaf,
   TrendingUp,
-  Users,
-  Wrench,
-  Handshake,
   Menu,
   X,
 } from "lucide-react";
 import Link from "next/link";
-
+import Insta from "@public/social/instagram.png";
 import ListServices from "./components/ListServices/ListServices";
 import { DetailsComponent } from "./components/Details/Details";
 import { IMAGENS } from "./mock/imagens";
-
+import Whatsapp from "@public/social/whatsapp.png";
+import Facebook from "@public/social/facebook.png";
+import SectionImage from "@public/section-image-one.svg";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,11 +64,7 @@ export default function Home() {
       >
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex flex-col">
-            <Image
-              src={require("@public/logo.svg")}
-              alt="Logo Moreira"
-              width={180}
-            />
+            <Image src={Logo} alt="Logo Moreira" width={180} />
           </div>
 
           <ul className="hidden md:flex space-x-8">
@@ -168,7 +165,6 @@ export default function Home() {
                 Garantindo o desenvolmento do seu negócio
               </p>
             </h1>
-
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollToSection("contact")}
@@ -185,22 +181,22 @@ export default function Home() {
                 Entre em Contato
               </button>
             </div>
-
             <div className="flex">
               <Link href={"#"}>
-                <Image src={require("@public/social/instagram.png")} alt="" />
+                <Image src={Insta} alt="" />
               </Link>
               <Link href={"#"}>
-                <Image src={require("@public/social/whatsapp.png")} alt="" />
+                <Image src={Whatsapp} alt="" />
               </Link>
               <Link href={"#"}>
-                <Image src={require("@public/social/facebook.png")} alt="" />
+                <Image src={Facebook} alt="" />
               </Link>
             </div>
+            w
           </div>
           <div className="relative">
             <Image
-              src="/section-image-one.svg"
+              src={SectionImage}
               alt="Estrutura Metálica"
               width={600}
               height={500}
@@ -237,11 +233,7 @@ export default function Home() {
           </section>
         </div>
         <div className="w-[50%]  ps-[100px] pt-[100px]">
-          <Image
-            src={require("@public/map-sem-fundo.svg")}
-            alt=""
-            className="w-[70%] "
-          />
+          <Image src={MapNot} alt="" className="w-[70%] " />
           <section className="p-5 flex gap-[10%]">
             {[
               ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
@@ -253,10 +245,12 @@ export default function Home() {
               ],
               ["Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)"],
               ["Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
-            ].map((item) => (
-              <ul>
-                {item.map((subItem) => (
-                  <li className="mb-2">{subItem}</li>
+            ].map((item, index) => (
+              <ul key={index}>
+                {item.map((subItem, index) => (
+                  <li className="mb-2" key={index}>
+                    {subItem}
+                  </li>
                 ))}
               </ul>
             ))}
@@ -550,8 +544,6 @@ export default function Home() {
                 // width="760"
                 // height="450"
                 loading="lazy"
-                //@ts-ignore
-                referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
               {/* <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -610,11 +602,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <Image
-                src={require("@public/logo.svg")}
-                alt="Logo Moreira"
-                width={200}
-              />
+              <Image src={Logo} alt="Logo Moreira" width={200} />
             </div>
 
             <div>

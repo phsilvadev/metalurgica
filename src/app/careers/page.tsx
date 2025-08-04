@@ -5,17 +5,14 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Upload,
-  User,
   Mail,
-  MapPin,
-  Briefcase,
   Send,
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
 
 export default function CareersPage() {
-  const [activeTab, setActiveTab] = useState<"jobs" | "apply">("jobs");
+  // const [activeTab, setActiveTab] = useState<"jobs" | "apply">("jobs");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -220,13 +217,13 @@ export default function CareersPage() {
     }
   };
 
-  const applyForJob = (jobId: string) => {
-    const job = availableJobs.find((j) => j.id === jobId);
-    if (job) {
-      setFormData((prev) => ({ ...prev, position: job.title }));
-      setActiveTab("apply");
-    }
-  };
+  // const applyForJob = (jobId: string) => {
+  //   const job = availableJobs.find((j) => j.id === jobId);
+  //   if (job) {
+  //     setFormData((prev) => ({ ...prev, position: job.title }));
+  //     setActiveTab("apply");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-white">

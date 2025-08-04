@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { IMAGENS } from "@/app/mock/imagens";
-
+import Close from "@public/close-1.svg";
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -37,7 +37,7 @@ export const DetailsComponent = ({ open, onClose, slug }: Props) => {
     >
       <Image
         onClick={onClose}
-        src={require("@public/close-1.svg")}
+        src={Close}
         alt=""
         className="absolute right-9 top-7 w-[45px] h-[45px] cursor-pointer"
       />
