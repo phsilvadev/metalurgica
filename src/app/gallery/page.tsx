@@ -8,17 +8,21 @@ import { IMAGENS } from "../mock/imagens";
 import { DetailsComponent } from "../components/Details/Details";
 
 export default function GalleryPage() {
-  const [img, setImag] = useState("");
+  const [IndexImag, setIndexImag] = useState<number>(0);
   const [open, setOpen] = useState(false);
 
-  const handleOpenModalImage = (slug: string) => {
-    setImag(slug);
+  const handleOpenModalImage = (index: number) => {
+    setIndexImag(index);
     setOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      <DetailsComponent slug={img} open={open} onClose={() => setOpen(false)} />
+      <DetailsComponent
+        initialIndex={IndexImag}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -41,59 +45,23 @@ export default function GalleryPage() {
         </div>
       </header>
 
-      {/* Filters */}
-      {/* <section className="bg-gray-50 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-4 mb-6">
-            <Filter size={20} className="text-gray-600" />
-            <span className="text-gray-700 font-medium">
-              Filtrar por categoria:
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? "bg-red-600 text-white shadow-lg"
-                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Gallery Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {IMAGENS.map((item, index) => (
-              <Link
-                href={""}
+              <a
                 key={index}
-                onClick={() => handleOpenModalImage(item.slug)}
-                className="group block"
+                onClick={() => handleOpenModalImage(index)}
+                className="relative group overflow-hidden rounded-2xl cursor-pointer block hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="md:flex">
-                    <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.slug}
-                        width={400}
-                        height={300}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                <Image
+                  src={item.image}
+                  alt={item.slug}
+                  width={400}
+                  height={300}
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+              </a>
             ))}
           </div>
         </div>

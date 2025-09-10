@@ -26,11 +26,11 @@ import SectionImage from "@public/section-image-one.svg";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [img, setImag] = useState("");
+  const [indeImage, setIndexImag] = useState<number>(0);
   const [open, setOpen] = useState(false);
 
-  const handleOpenModalImage = (slug: string) => {
-    setImag(slug);
+  const handleOpenModalImage = (index: number) => {
+    setIndexImag(index);
     setOpen(true);
   };
 
@@ -53,7 +53,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <DetailsComponent slug={img} open={open} onClose={() => setOpen(false)} />
+      <DetailsComponent
+        initialIndex={indeImage}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
       {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -146,11 +150,11 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden"
+        className="xl:min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden p-[50px] pb-[150px] pt-[200px] xl:p-0 xl:pt-0 xl:pb-0"
       >
-        <div className="absolute inset-0  opacity-30"></div>
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-28 items-center relative z-10">
-          <div className="space-y-6 me-8">
+        <div className="absolute inset-0 opacity-30"></div>
+        <div className="container mx-auto px-4 grid xl:grid-cols-2 gap-28 items-center relative z-10">
+          <div className="space-y-6 me-8 w-full lg:w-auto ">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               <div className="text-[0.7em] font-medium">
                 Buscando soluções profissionais em estruturas metálicas e
@@ -166,35 +170,38 @@ export default function Home() {
               </p>
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => scrollToSection("contact")}
+              <a
+                href=""
                 className="flex items-center justify-center gap-2 bg-background text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 <Calculator size={20} />
                 Solicitar Orçamento
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
+              </a>
+              <a
+                href="http://wa.me/5586995898758"
                 className="flex items-center justify-center gap-2 border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-800 hover:text-white hover:-translate-y-1 transition-all duration-300"
               >
                 <Phone size={20} />
                 Entre em Contato
-              </button>
+              </a>
             </div>
             <div className="flex">
-              <Link href={"#"}>
+              <Link
+                href={
+                  "https://www.instagram.com/metalurgica_moreira_balsas?igsh=NHU0cDd6b283NzB6"
+                }
+              >
                 <Image src={Insta} alt="" />
               </Link>
-              <Link href={"#"}>
+              <Link href={"http://wa.me/5586995898758"}>
                 <Image src={Whatsapp} alt="" />
               </Link>
-              <Link href={"#"}>
+              {/* <Link href={"#"}>
                 <Image src={Facebook} alt="" />
-              </Link>
+              </Link> */}
             </div>
-            w
           </div>
-          <div className="relative">
+          <div className="relative hidden xl:inline-block">
             <Image
               src={SectionImage}
               alt="Estrutura Metálica"
@@ -209,9 +216,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex justify-end items-center relative overflow-hidden">
-        <div className="w-[60%] text-[#fff] bg-background h-[1500px] rounded-[100%] absolute left-[-200px] flex justify-center items-center">
-          <section className="w-[45%]">
+      <section className="flex flex-col-reverse xl:flex-row justify-end items-center relative overflow-hidden">
+        <div className="xl:w-[60%] text-[#fff] bg-background p-[50px] xl:h-[1500px] xl:rounded-[100%] xl:absolute left-[-200px] xl:flex justify-center items-center">
+          <section className="w-full xl:w-[45%]">
             <div className="mb-[50px]">
               <h1 className="text-[3.5em] font-bold">ONDE ATUAMOS</h1>
               <h5>Nas seguintes região do Brasil</h5>
@@ -232,9 +239,11 @@ export default function Home() {
             </button>
           </section>
         </div>
-        <div className="w-[50%]  ps-[100px] pt-[100px]">
-          <Image src={MapNot} alt="" className="w-[70%] " />
-          <section className="p-5 flex gap-[10%]">
+        <div className="xl:w-[50%] xl:ps-[100px] xl:pt-[100px] p-[50px] xl:p-0">
+          <div className="xl:w-full flex xl:flex justify-center items-center">
+            <Image src={MapNot} alt="" className="w-[70%] " />
+          </div>
+          <section className="p-5 xl:flex gap-[10%] grid grid-cols-2">
             {[
               ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
               [
@@ -405,7 +414,7 @@ export default function Home() {
             {IMAGENS.slice(0, 4).map((item, index) => (
               <a
                 key={index}
-                onClick={() => handleOpenModalImage(item.slug)}
+                onClick={() => handleOpenModalImage(index)}
                 className="relative group overflow-hidden rounded-2xl cursor-pointer block hover:-translate-y-2 transition-all duration-300"
               >
                 <Image
@@ -415,29 +424,6 @@ export default function Home() {
                   height={300}
                   className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-6 left-6 text-white">
-                    {/* <h4 className="text-lg font-semibold mb-2">{item.title}</h4> */}
-                    {/* <p className="text-gray-300 mb-3">{item.desc}</p> */}
-                    {/* <span className="inline-flex items-center text-sm font-medium text-red-300">
-                      Ver detalhes
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span> */}
-                  </div>
-                </div>
               </a>
             ))}
           </div>
@@ -537,7 +523,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl">
+            <div className="bg-gray-50 rounded-2xl h-[400px] xl:h-0">
               <iframe
                 className="w-full h-full"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.5987340788447!2d-46.0394201!3d-7.509470899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92d5ef60c6a2f87b%3A0x5a00d29b7df8f416!2sMetal%C3%BArgica%20Moreira!5e0!3m2!1spt-BR!2sbr!4v1754004927875!5m2!1spt-BR!2sbr"

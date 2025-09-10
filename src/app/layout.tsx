@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     description:
       "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas.",
   },
+  icons: "LOGO_METALURGICA.svg",
 };
 
 export default function RootLayout({
@@ -45,7 +46,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <meta name="theme-color" content="#dc2626" />
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </head>
       <body className={inter.className}>{children}</body>
     </html>

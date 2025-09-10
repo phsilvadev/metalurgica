@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Link Bio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+    
+      background: linear-gradient(135deg, #1F2937, #41474e, #1F2937, #41474e);
+      background-size: 400% 400%;
+      animation: gradientMove 8s ease infinite;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+    }
+    .bio-card {
+      /* background: rgba(255,255,255,0.1); */
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .profile-img {
+      width: 300px;
+    }
+    .link-btn {
+      background: white;
+      color: #333;
+      border-radius: 50px;
+      padding: 0.75rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    .link-btn:hover {
+      transform: scale(1.05);
+      background: #000;
+      color: white;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 1.2rem;
+      margin: 0 8px;
+      transition: opacity 0.3s ease;
+    }
+    .social-icons a:hover {
+      opacity: 0.7;
+    }
+    .parallelogram{
+        padding: 25px 0;
+        font-size: 1em;
+        font-weight: bolder;
+    }
+
+    /* BottomSheet */
+    .bottom-sheet {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: #1F2937;
+      color: white;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+      transition: bottom 0.3s ease;
+      z-index: 999;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .bottom-sheet.show {
+      bottom: 0;
+    }
+    .bottom-sheet h5 {
+      margin-bottom: 1rem;
+    }
+    .bottom-sheet a {
+      display: block;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem;
+      border-radius: 50px;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .bottom-sheet a:hover {
+      background: #128C7E;
+    }
+    .bottom-sheet .close-btn {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    /* Fundo blur */
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5); 
+        backdrop-filter: blur(5px);  
+        display: none;               
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+    /* FadeIn do modal */
+    .modal-backdrop.show {
+        display: flex;
+        animation: fadeIn 0.2s forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="bio-card">
+    <img src="./logo-metalurgica-fonte-branca.png" alt="Foto de perfil" class="profile-img">
+    <div class="parallelogram">
+        Fabricação de Galpões Metalicos, Torres, Tanques e Caixa d'Água
+    </div>
+    <div class="d-grid">
+        <button id="orcamentosBtn" onclick="OpenModal()" class="btn link-btn"><i class="fa-brands fa-whatsapp me-2" style="font-size: 18px;"></i>Orçamentos</button>
+        <a href="https://wa.me/5586995898758" class="btn link-btn"><i class="fa-solid fa-phone me-2"></i>Administrativo</a>
+        <a href="https://www.metalurgicamoreira.com.br/" class="btn link-btn"><i class="fas fa-link me-2"></i>Web site</a>
+        <a href="https://www.instagram.com/metalurgica_moreira_balsas?igsh=NHU0cDd6b283NzB6" class="btn link-btn"><i class="fab fa-instagram me-2"></i>Instagram</a>
+        <a href="https://maps.app.goo.gl/wZ1LshatS1yAZwiS7" class="btn link-btn"><i class="fa-solid fa-location-dot me-2"></i>Endereço</a>
+    </div>
+
+    <div class="social-icons mt-4">
+      <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+      <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+      <a href="https://wa.me/5586995898758"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+   <div class="modal-backdrop" id="modal">
+        <div class="bottom-sheet" id="bottomSheet">
+        <button onclick="CloseModal()" class="close-btn" id="closeSheet">&times;</button>
+        <h5>Fale Conosco via WhatsApp</h5>
+        <a href="https://wa.me/5599988147920" target="_blank"><i class="fab fa-whatsapp me-2"></i>Tarci</a>
+        <a href="https://wa.me/5599984510890" target="_blank"><i class="fab fa-whatsapp me-2"></i>Wilks</a>
+        <a href="https://wa.me/5599991446287" target="_blank"><i class="fab fa-whatsapp me-2"></i>Wilton</a>
+    </div>
+   </div>
+  
+
+  <script>
+
+    function OpenModal(){
+      const modal = document.getElementById('modal');
+      const bottomSheet = document.getElementById('bottomSheet');
+      modal.classList.add('show');
+
+      setTimeout(() => {
+        bottomSheet.classList.add('show');
+      }, 300);
+
+    }
+
+    function CloseModal(){
+      const modal = document.getElementById('modal');
+      const closeSheet = document.getElementById('closeSheet');
+      const bottomSheet = document.getElementById('bottomSheet');
+      bottomSheet.classList.remove('show');
+
+      setTimeout(() => {
+        modal.classList.remove('show');
+      }, 300); 
+
+    }
+
+  </script>
+
+</body>
+</html>

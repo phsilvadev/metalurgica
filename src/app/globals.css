@@ -10,6 +10,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -206,5 +207,16 @@ p {
 
   html {
     scroll-behavior: auto;
+  }
+}
+@media (min-width: 1200px) { 
+  .aspect-square-custom{
+    display: block;
+  }
+}
+
+@media (min-width: 992px) { 
+  .aspect-square-custom-992{
+    display: block;
   }
 }

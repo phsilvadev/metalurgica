@@ -1,21 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { IMAGENS } from "@/app/mock/imagens";
 import Close from "@public/close-1.svg";
 type Props = {
   open: boolean;
   onClose: () => void;
-  slug?: string; // ou imageUrl?: string
+  initialIndex: number; // ou imageUrl?: string
 };
 
-export const DetailsComponent = ({ open, onClose, slug }: Props) => {
-  const initialIndex = slug ? IMAGENS.findIndex((img) => img.slug === slug) : 0;
-
-  const [currentIndex, setCurrentIndex] = useState(
-    initialIndex >= 0 ? initialIndex : 0
-  );
+export const DetailsComponent = ({ open, onClose, initialIndex }: Props) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -28,6 +24,10 @@ export const DetailsComponent = ({ open, onClose, slug }: Props) => {
       prevIndex === 0 ? IMAGENS.length - 1 : prevIndex - 1
     );
   };
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
 
   return (
     <div

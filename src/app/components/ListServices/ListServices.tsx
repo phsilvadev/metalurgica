@@ -65,39 +65,113 @@ const services = [
 
 const ListServices = () => {
   return (
-    <Swiper
-      slidesPerView={3}
-      spaceBetween={30}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Pagination]}
-      className="mySwiper"
-    >
-      {services.map((item, index) => (
-        <SwiperSlide key={index}>
-          <div
-            key={index}
-            className="bg-white rounded-2xl overflow-hidden shadow-lg h-[360px]"
-          >
-            <div className="p-6">
-              <h3 className="text-xl  font-semibold text-gray-800 mb-3">
-                {item.title}
-              </h3>
-              <p className="text-gray-600 text-start mb-4">{item.desc}</p>
-              <ul className="space-y-2">
-                {item.items.map((item, idx) => (
-                  <li key={idx} className="flex items-center text-gray-600">
-                    <span className="w-2 h-2  bg-red-600 rounded-full mr-3"></span>
-                    <span className="text-start">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div>
+      <div className="hidden aspect-square-custom">
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper "
+        >
+          {services.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg h-[360px]"
+              >
+                <div className="p-6">
+                  <h3 className="text-xl  font-semibold text-gray-800 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-start mb-4">{item.desc}</p>
+                  <ul className="space-y-2">
+                    {item.items.map((item, idx) => (
+                      <li key={idx} className="flex items-center text-gray-600">
+                        <span className="w-2 h-2  bg-red-600 rounded-full mr-3"></span>
+                        <span className="text-start">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="hidden aspect-square-custom-992">
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {services.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg h-[360px]"
+              >
+                <div className="p-6">
+                  <h3 className="text-xl  font-semibold text-gray-800 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-start mb-4">{item.desc}</p>
+                  <ul className="space-y-2">
+                    {item.items.map((item, idx) => (
+                      <li key={idx} className="flex items-center text-gray-600">
+                        <span className="w-2 h-2  bg-red-600 rounded-full mr-3"></span>
+                        <span className="text-start">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="lg:hidden">
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {services.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg h-[360px]"
+              >
+                <div className="p-6">
+                  <h3 className="text-xl  font-semibold text-gray-800 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-start mb-4">{item.desc}</p>
+                  <ul className="space-y-2">
+                    {item.items.map((item, idx) => (
+                      <li key={idx} className="flex items-center text-gray-600">
+                        <span className="w-2 h-2  bg-red-600 rounded-full mr-3"></span>
+                        <span className="text-start">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
   );
 };
 
