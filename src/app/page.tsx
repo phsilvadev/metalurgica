@@ -475,11 +475,6 @@ export default function Home() {
                     info: "(99) 98814-7920 / (99) 98451-0890 / (99) 99144-6287",
                   },
                   {
-                    icon: "envelope",
-                    title: "Email",
-                    info: "contato@embrafer.com",
-                  },
-                  {
                     icon: "map-pin",
                     title: "Localização",
                     info: "Balsas - MA",
