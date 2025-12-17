@@ -21,7 +21,6 @@ import ListServices from "./components/ListServices/ListServices";
 import { DetailsComponent } from "./components/Details/Details";
 import { IMAGENS } from "./mock/imagens";
 import Whatsapp from "@public/social/whatsapp.png";
-import Facebook from "@public/social/facebook.png";
 import SectionImage from "@public/section-image-one.svg";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
