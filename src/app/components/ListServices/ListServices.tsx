@@ -66,7 +66,7 @@ const services = [
 const ListServices = () => {
   return (
     <div>
-      <div className="hidden aspect-square-custom">
+      <div className="hidden xl:block">
         <Swiper
           slidesPerView={3}
           spaceBetween={30}
@@ -101,7 +101,7 @@ const ListServices = () => {
           ))}
         </Swiper>
       </div>
-      <div className="hidden aspect-square-custom-992">
+      <div className="hidden lg:block xl:hidden">
         <Swiper
           slidesPerView={2}
           spaceBetween={30}

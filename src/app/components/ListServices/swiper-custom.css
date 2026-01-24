@@ -1,0 +1,34 @@
+/* Custom Swiper Pagination Styles */
+.products-swiper {
+  padding-bottom: 80px !important;
+  overflow: visible !important;
+}
+
+.products-swiper .swiper-pagination {
+  position: absolute !important;
+  bottom: -20px !important;
+  left: 50px !important;
+  right: auto !important;
+  width: auto !important;
+  text-align: left !important;
+}
+
+.products-swiper .swiper-pagination-bullet {
+  width: 20px !important;
+  height: 20px !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  opacity: 1 !important;
+  margin: 0 12px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.products-swiper .swiper-pagination-bullet-active {
+  background: #D82224 !important;
+  transform: scale(1.3) !important;
+}
+
+.products-swiper .swiper-pagination-bullet:hover {
+  background: rgba(216, 34, 36, 0.8) !important;
+  transform: scale(1.1) !important;
+}

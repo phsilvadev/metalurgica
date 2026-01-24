@@ -1,38 +1,32 @@
 "use client";
 
-import Logo from "@public/logo-home.png";
 import MapNot from "@public/map-sem-fundo.svg";
-import {
-  Calculator,
-  Instagram,
-  Leaf,
-  MapPin,
-  Menu,
-  Phone,
-  Shield,
-  TrendingUp,
-  X,
-  Zap,
-} from "lucide-react";
+import Logo from "@public/logo-home.png";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import { DetailsComponent } from "./components/Details/Details";
+import {
+  ChevronDown,
+  Calculator,
+  Phone,
+  Zap,
+  Shield,
+  Leaf,
+  TrendingUp,
+  Menu,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import Insta from "@public/social/instagram.png";
 import ListServices from "./components/ListServices/ListServices";
+import { DetailsComponent } from "./components/Details/Details";
 import { IMAGENS } from "./mock/imagens";
-import bgHeroSection from "@public/hero-section-bg.jpeg";
+import Whatsapp from "@public/social/whatsapp.png";
+import SectionImage from "@public/section-image-one.svg";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [indeImage, setIndexImag] = useState<number>(0);
   const [open, setOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("coverage");
-  const [products, setProducts] = useState([]);
-  const [content, setContent] = useState<any[]>([]);
-  const [features, setFeatures] = useState([]);
 
   const handleOpenModalImage = (index: number) => {
     setIndexImag(index);
@@ -44,40 +38,7 @@ export default function Home() {
       setIsScrolled(window.scrollY > 100);
     };
 
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Erro ao carregar produtos:", error);
-      }
-    };
-
-    const fetchContent = async () => {
-      try {
-        const res = await fetch("/api/content");
-        const data = await res.json();
-        setContent(data);
-      } catch (error) {
-        console.error("Erro ao carregar conteúdo:", error);
-      }
-    };
-
-    const fetchFeatures = async () => {
-      try {
-        const res = await fetch('/api/features');
-        const data = await res.json();
-        setFeatures(data);
-      } catch (error) {
-        console.error('Erro ao carregar features:', error);
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
-    fetchProducts();
-    fetchContent();
-    fetchFeatures();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -91,37 +52,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <style jsx global>{`
-        .products-swiper {
-          padding-bottom: 80px !important;
-          overflow: visible !important;
-        }
-        .products-swiper .swiper-pagination {
-          position: absolute !important;
-          bottom: -20px !important;
-          left: 50px !important;
-          right: auto !important;
-          width: auto !important;
-          text-align: left !important;
-        }
-        .products-swiper .swiper-pagination-bullet {
-          width: 20px !important;
-          height: 20px !important;
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          margin: 0 12px !important;
-          transition: all 0.3s ease !important;
-          cursor: pointer !important;
-        }
-        .products-swiper .swiper-pagination-bullet-active {
-          background: #d82224 !important;
-          transform: scale(1.3) !important;
-        }
-        .products-swiper .swiper-pagination-bullet:hover {
-          background: rgba(216, 34, 36, 0.8) !important;
-          transform: scale(1.1) !important;
-        }
-      `}</style>
       <DetailsComponent
         initialIndex={indeImage}
         open={open}
@@ -129,34 +59,9 @@ export default function Home() {
       />
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md shadow-lg ${isScrolled ? "bg-[#fff]" : "bg-white/40"}`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#fff]`}
       >
-        <div className="h-[50px] bg-[#D82224] w-full flex items-center px-4">
-          <div className="container mx-auto flex justify-between items-center">
-            <a
-              href="https://maps.google.com/?q=R.+22,+N°50+-+Potosi,+Balsas+-+MA,+65800-000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-200 transition-colors text-sm flex items-center gap-2"
-            >
-              <MapPin size={22} />
-              <div>
-                <div className="font-semibold">Balsas - MA</div>
-                <div className="text-xs opacity-90">
-                  R. 22, N°50 - Potosi, 65800-000
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://instagram.com/metalurgicamoreira"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-200 transition-colors"
-            >
-              <Instagram size={20} />
-            </a>
-          </div>
-        </div>
+        <div className="h-[40px] bg-[#D82224] w-full"></div>
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center ">
           <div className="flex flex-col">
             <Image src={Logo} alt="Logo Moreira" width={180} />
@@ -259,127 +164,132 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="home"
-        className="xl:min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden p-[50px] pb-[150px] pt-[200px] xl:p-0 xl:pt-0 xl:pb-0"
+        className="xl:min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden p-[50px] pb-[150px] pt-[200px] xl:p-0 xl:pt-0 xl:pb-0"
       >
-        <Image
-          src={bgHeroSection}
-          alt="Background"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            {(Array.isArray(content) &&
-              content.find((c: any) => c.key === "hero")?.title) ||
-              "Do aço à estrutura tudo em um só lugar"}
-          </h1>
-          <p className="text-lg md:text-xl mb-8">
-            {(Array.isArray(content) &&
-              content.find((c: any) => c.key === "hero")?.subtitle) ||
-              "Soluções completas em metalurgia para o Norte e Nordeste do Brasil"}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => scrollToSection("services")}
-              className="bg-[#D82224] text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors"
-            >
-              Nossos Serviços
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition-colors"
-            >
-              Solicitar Orçamento
-            </button>
+        <div className="absolute inset-0 opacity-30"></div>
+        <div className="container mx-auto px-4 grid xl:grid-cols-2 gap-28 items-center relative z-10">
+          <div className="space-y-6 me-8 w-full lg:w-auto ">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+              <div className="text-[0.7em] font-medium">
+                Buscando soluções profissionais em estruturas metálicas e
+                concreto pré-moldado?
+              </div>
+
+              <div className="text-colo relative mt-4 font-extrabold">
+                METALÚRGICA MOREIRA
+                <span className="absolute bottom-0 left-0 w-full h-1 from-red-600 to-red-500 rounded"></span>
+              </div>
+              <p className="text-lg text-gray-600 font-normal leading-relaxed">
+                Garantindo o desenvolmento do seu negócio
+              </p>
+            </h1>
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* <a
+                href=""
+                className="flex items-center justify-center gap-2 bg-background text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                <Calculator size={20} />
+                Solicitar Orçamento
+              </a>
+              <a
+                href="http://wa.me/5586995898758"
+                className="flex items-center justify-center gap-2 border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-800 hover:text-white hover:-translate-y-1 transition-all duration-300"
+              >
+                <Phone size={20} />
+                Entre em Contato
+              </a> */}
+            </div>
+            <div className="flex">
+              <Link
+                href={
+                  "https://www.instagram.com/metalurgica_moreira_balsas?igsh=NHU0cDd6b283NzB6"
+                }
+              >
+                <Image src={Insta} alt="" />
+              </Link>
+              <Link href={"http://wa.me/5586995898758"}>
+                <Image src={Whatsapp} alt="" />
+              </Link>
+              {/* <Link href={"#"}>
+                <Image src={Facebook} alt="" />
+              </Link> */}
+            </div>
           </div>
+          <div className="relative hidden xl:inline-block">
+            <Image
+              src={SectionImage}
+              alt="Estrutura Metálica"
+              width={600}
+              height={500}
+              className="rounded-2xl hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown size={32} className="text-gray-600" />
         </div>
       </section>
 
-      <section className="py-20 pb-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-4">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "products")?.title) ||
-                "NOSSOS PRODUTOS"}
-            </h2>
-            <p className="text-xl text-gray-300">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "products")?.subtitle) ||
-                "Estruturas metálicas de alta qualidade"}
+      <section className="flex flex-col-reverse xl:flex-row justify-end items-center relative overflow-hidden">
+        <div className="xl:w-[60%] text-[#fff] bg-background p-[50px] xl:h-[1500px] xl:rounded-[100%] xl:absolute left-[-200px] xl:flex justify-center items-center">
+          <section className="w-full xl:w-[45%]">
+            <div className="mb-[50px]">
+              <h1 className="text-[3.5em] font-bold">ONDE ATUAMOS</h1>
+              <h5>Nas seguintes região do Brasil</h5>
+            </div>
+            <p className="text-[1.3em] font-light">
+              <strong className="font-bold">Metalúrgica Moreira</strong> está
+              presente estrategicamente nas regiões Norte e Nordeste do Brasil,
+              oferecendo soluções metalúrgicas sob medida com agilidade,
+              qualidade e compromisso
             </p>
-          </div>
 
-          {/* Swiper de Produtos */}
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={2}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 20,
-              },
-            }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            speed={800}
-            loop={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Pagination, Autoplay]}
-            className="mySwiper products-swiper"
-          >
-            {products.length > 0 &&
-              products.map((product: any, index: number) => (
-                <SwiperSlide key={product.id} className="px-10">
-                  <div className="bg-gray-800 w-[87%] rounded-2xl overflow-hidden hover:bg-gray-700 transition-colors duration-300">
-                    <div className="h-60 bg-gray-700 flex items-center justify-center overflow-hidden">
-                      {product.image ? (
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-gray-400">Imagem do Produto</span>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-lg font-semibold text-white text-center">
-                        {product.name}
-                      </h3>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-          </Swiper>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="flex items-center mt-[70px] justify-center gap-2 bg-[#fff] text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <Calculator size={20} />
+              Solicitar Orçamento
+            </button>
+          </section>
         </div>
-
-        {/* Elementos decorativos */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D82224]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="xl:w-[50%] xl:ps-[100px] xl:pt-[100px] p-[50px] xl:p-0">
+          <div className="xl:w-full flex xl:flex justify-center items-center">
+            <Image src={MapNot} alt="" className="w-[70%] " />
+          </div>
+          <section className="p-5 xl:flex gap-[10%] grid grid-cols-2">
+            {[
+              ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
+              [
+                "Rondônia (RO)",
+                "Roraima (RR)",
+                "Tocantins (TO)",
+                "Alagoas (AL)",
+              ],
+              ["Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)"],
+              ["Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
+            ].map((item, index) => (
+              <ul key={index}>
+                {item.map((subItem, index) => (
+                  <li className="mb-2" key={index}>
+                    {subItem}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </section>
+        </div>
       </section>
 
       <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "services")?.title) ||
-                "Nossos Serviços"}
+              Nossos Serviços
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "services")?.subtitle) ||
-                "Soluções completas em estruturas metálicas para todos os tipos de projetos"}
+              Soluções completas em estruturas metálicas para todos os tipos de
+              projetos
             </p>
           </div>
 
@@ -390,20 +300,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
-            {features.length > 0 ? features.map((feature: any, index: number) => (
-              <div
-                key={feature.id}
-                className="text-center group hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-20 h-20 bg-[#D82224] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
-                  <span className="text-4xl">{feature.icon}</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            )) : [
+            {[
               {
                 icon: Zap,
                 title: "Velocidade",
@@ -429,7 +326,7 @@ export default function Home() {
                 key={index}
                 className="text-center group hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="w-20 h-20 bg-[#D82224] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
+                <div className="w-20 h-20 bg-background from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
                   <feature.icon size={32} className="text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -447,14 +344,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "gallery")?.title) ||
-                "Galeria de Fotos"}
+              Galeria de Fotos
             </h2>
             <p className="text-lg text-gray-600">
-              {(Array.isArray(content) &&
-                content.find((c: any) => c.key === "gallery")?.subtitle) ||
-                "Conheça alguns dos nossos projetos realizados"}
+              Conheça alguns dos nossos projetos realizados
             </p>
           </div>
 
