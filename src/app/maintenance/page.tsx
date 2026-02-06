@@ -1,6 +1,6 @@
 "use client";
 
-import { Wrench, ArrowLeft, Clock, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@public/logo-nova.png";
