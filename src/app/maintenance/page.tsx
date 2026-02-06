@@ -13,11 +13,7 @@ export default function MaintenancePage() {
           <Image src={Logo} alt="Logo Moreira" width={400} />
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-12 space-y-6">
-          <div className="w-24 h-24 bg-background rounded-full flex items-center justify-center mx-auto animate-pulse">
-            <Wrench size={48} className="text-white" />
-          </div>
-
+        <div className="p-12 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
             Em Manutenção
           </h1>
@@ -26,11 +22,6 @@ export default function MaintenancePage() {
             Estamos trabalhando para melhorar sua experiência. Voltaremos em
             breve com novidades!
           </p>
-
-          <div className="flex items-center justify-center gap-2 text-gray-500">
-            <Clock size={20} />
-            <span className="font-medium">Previsão: Em breve</span>
-          </div>
 
           <div className="pt-6 space-y-4">
             <p className="text-gray-600">
@@ -46,22 +37,12 @@ export default function MaintenancePage() {
                 WhatsApp
               </a>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="flex items-center justify-center gap-2 border-2 border-gray-800 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-800 hover:text-white hover:-translate-y-1 transition-all duration-300"
               >
                 Contato
               </Link>
             </div>
-          </div>
-
-          <div className="pt-8 border-t border-gray-200">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-background hover:text-red-700 font-semibold transition-colors duration-300"
-            >
-              <ArrowLeft size={20} />
-              Voltar ao Início
-            </Link>
           </div>
         </div>
 
