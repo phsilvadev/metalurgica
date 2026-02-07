@@ -30,7 +30,7 @@ export default function MaintenancePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="http://wa.me/5586995898758"
+                href="http://wa.me/559991128580"
                 className="flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 hover:-translate-y-1 transition-all duration-300"
               >
                 <Phone size={20} />
