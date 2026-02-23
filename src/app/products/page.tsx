@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "@public/logo-home.png";
-import { Calculator, Instagram, MapPin, Menu, Phone, X } from "lucide-react";
+import { Instagram, MapPin, Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";

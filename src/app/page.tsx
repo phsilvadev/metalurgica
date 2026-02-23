@@ -1,9 +1,7 @@
 "use client";
 
 import Logo from "@public/logo-home.png";
-import MapNot from "@public/map-sem-fundo.svg";
 import {
-  Calculator,
   Instagram,
   Leaf,
   MapPin,
@@ -43,7 +41,6 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [indeImage, setIndexImag] = useState<number>(0);
   const [open, setOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("coverage");
   const products = [
     {
       id: 1,
@@ -392,7 +389,7 @@ export default function Home() {
             modules={[Autoplay]}
             className="mySwiper products-swiper"
           >
-            {products.map((product: any, index: number) => (
+            {products.map((product) => (
               <SwiperSlide key={product.id} className="px-10">
                 <div className="bg-gray-800 w-[87%] rounded-2xl overflow-hidden hover:bg-gray-700 transition-colors duration-300">
                   <div className="h-60 bg-gray-700 flex items-center justify-center overflow-hidden">
