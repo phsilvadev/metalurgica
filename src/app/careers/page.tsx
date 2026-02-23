@@ -35,9 +35,9 @@ export default function CareersPage() {
             Construa sua Carreira Conosco
           </h2>
           <p className="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
-            Na Metalurgica moreira, valorizamos o talento, a dedicação e a
-            inovação. Junte-se a nós e ajude a construir o futuro das estruturas
-            metálicas no Brasil.
+            Na Aço Moreira, valorizamos o talento, a dedicação e a inovação.
+            Junte-se a nós e ajude a construir o futuro das estruturas metálicas
+            no Brasil.
           </p>
         </div>
       </section>
@@ -71,7 +71,7 @@ export default function CareersPage() {
           <h2 className="text-3xl font-bold mb-4">Ainda tem dúvidas?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Entre em contato conosco para saber mais sobre as oportunidades de
-            carreira na Metalúrgica Moreira.
+            carreira na Aço Moreira.
           </p>
           <Link
             href="/#contact"

@@ -16,7 +16,7 @@ import { Pagination } from "swiper/modules";
 const services = [
   {
     title: "Coberturas Metálicas",
-    desc: "Coberturas resistentes e duráveis para galpões, armazéns e edificações comerciais.",
+    desc: "Trabalhamos com estrutura resistente, segura e sob medida para cada projeto. Atendemos obras residenciais, comerciais e agroindustriais.",
     items: [
       "Galpões industriais",
       "Armazéns graneleiros",

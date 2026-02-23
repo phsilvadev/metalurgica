@@ -6,27 +6,27 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
+  title: "Aço Moreira - Do aço á estrutura. Tudo em um só lugar",
   description:
-    "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas com qualidade, segurança e agilidade em Balsas MA.",
+    "A força do aço com qualidade e confiança. A Aço Moreira oferece soluções completas em estruturas metálicas com segurança e agilidade em Balsas MA.",
   keywords:
-    "estruturas metálicas, Balsas MA, construção, aço, galpões, coberturas metálicas, torres, telecomunicações",
-  authors: [{ name: "Metalúrgica Moreira" }],
+    "estruturas metálicas, Balsas MA, aço moreira, construção metálica, galpões metálicos, coberturas metálicas, torres metálicas, telecomunicações",
+  authors: [{ name: "Aço Moreira" }],
   viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
-    title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
+    title: "Aço Moreira - Do aço á estrutura. Tudo em um só lugar",
     description:
-      "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas.",
+      "A força do aço com qualidade e confiança. Soluções completas em Do aço á estrutura. Tudo em um só lugar.",
     type: "website",
     locale: "pt_BR",
-    siteName: "Metalúrgica Moreira",
+    siteName: "Aço Moreira",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Metalúrgica Moreira - Estruturas Metálicas em Balsas MA",
+    title: "Aço Moreira - Do aço á estrutura. Tudo em um só lugar",
     description:
-      "O poder do aço com uma empresa de confiança. Soluções completas em estruturas metálicas.",
+      "A força do aço com qualidade e confiança. Soluções completas em estruturas metálicas.",
   },
   icons: "LOGO_METALURGICA.svg",
 };
