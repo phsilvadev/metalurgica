@@ -16,7 +16,7 @@ import { Pagination } from "swiper/modules";
 const services = [
   {
     title: "Coberturas Metálicas",
-    desc: "Coberturas resistentes e duráveis para galpões, armazéns e edificações comerciais.",
+    desc: "Trabalhamos com estrutura resistente, segura e sob medida para cada projeto. Atendemos obras residenciais, comerciais e agroindustriais.",
     items: [
       "Galpões industriais",
       "Armazéns graneleiros",
@@ -66,7 +66,7 @@ const services = [
 const ListServices = () => {
   return (
     <div>
-      <div className="hidden aspect-square-custom">
+      <div className="hidden xl:block">
         <Swiper
           slidesPerView={3}
           spaceBetween={30}
@@ -101,7 +101,7 @@ const ListServices = () => {
           ))}
         </Swiper>
       </div>
-      <div className="hidden aspect-square-custom-992">
+      <div className="hidden lg:block xl:hidden">
         <Swiper
           slidesPerView={2}
           spaceBetween={30}

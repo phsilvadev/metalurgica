@@ -1,32 +1,153 @@
 "use client";
 
-import MapNot from "@public/map-sem-fundo.svg";
-import Logo from "@public/logo.svg";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import Logo from "@public/logo-home.png";
 import {
-  ChevronDown,
-  Calculator,
-  Phone,
-  Zap,
-  Shield,
+  Instagram,
   Leaf,
-  TrendingUp,
+  MapPin,
   Menu,
+  Phone,
+  Shield,
+  TrendingUp,
   X,
+  Zap,
 } from "lucide-react";
-import Link from "next/link";
-import Insta from "@public/social/instagram.png";
-import ListServices from "./components/ListServices/ListServices";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 import { DetailsComponent } from "./components/Details/Details";
+import ListServices from "./components/ListServices/ListServices";
 import { IMAGENS } from "./mock/imagens";
-import Whatsapp from "@public/social/whatsapp.png";
-import SectionImage from "@public/section-image-one.svg";
+import bgHeroSection from "@public/hero-section-bg.jpeg";
+import BARRA_CHATA from "@public/products/01.jpeg";
+import FERRO_MECANICO_LISO from "@public/products/08.jpeg";
+import LAMBRIL_ONDULADO from "@public/products/02.jpeg";
+import LAMBRIL_BAGUETADO from "@public/products/03.jpeg";
+import TELHA_TRAPEZIO from "@public/products/04.jpeg";
+import PERFIL_SIMPLES_E_ENRIJECIDO from "@public/products/06.jpeg";
+import TUBO_RETANGULAR from "@public/products/05.jpeg";
+import TUBO_QUADRADO from "@public/products/07.jpeg";
+import COLUNA_5_16_PRONTA_8MM_6M from "@public/products/09.jpeg";
+import CANTONEIRA from "@public/products/11.jpeg";
+import VERGALHAO from "@public/products/10.jpeg";
+import TRELIÇA from "@public/products/12.jpeg";
+import CHAPAS_METALICAS from "@public/products/13.jpeg";
+import TUBO_REDONDO from "@public/products/14.jpeg";
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [indeImage, setIndexImag] = useState<number>(0);
   const [open, setOpen] = useState(false);
+  const products = [
+    {
+      id: 1,
+      name: "barra chata",
+      image: BARRA_CHATA,
+      description: "Barras chatas de aço para diversas aplicações estruturais",
+    },
+    {
+      id: 2,
+      name: "lambril ondulado",
+      image: LAMBRIL_ONDULADO,
+      description: "Lambril ondulado para revestimento e cobertura",
+    },
+    {
+      id: 3,
+      name: "lambril baguetado",
+      image: LAMBRIL_BAGUETADO,
+      description: "Lambril baguetado para acabamento e revestimento",
+    },
+    {
+      id: 4,
+      name: "telha trapézio",
+      image: TELHA_TRAPEZIO,
+      description: "Telhas trapézio metálicas para coberturas industriais",
+    },
+    {
+      id: 5,
+      name: "tubo retangular",
+      image: TUBO_RETANGULAR,
+      description: "Tubos retangulares para estruturas metálicas",
+    },
+    {
+      id: 6,
+      name: "perfil simples e enrijecido",
+      image: PERFIL_SIMPLES_E_ENRIJECIDO,
+      description: "Perfis simples e enrijecidos para estruturas",
+    },
+    {
+      id: 7,
+      name: "tubo quadrado",
+      image: TUBO_QUADRADO,
+      description: "Tubos quadrados para construção civil",
+    },
+    {
+      id: 8,
+      name: "ferro mecânico liso",
+      image: FERRO_MECANICO_LISO,
+      description: "Ferro mecânico liso para aplicações diversas",
+    },
+    {
+      id: 9,
+      name: "coluna 5/16 pronta 8mm 6m",
+      image: COLUNA_5_16_PRONTA_8MM_6M,
+      description: "Colunas prontas para estruturas metálicas",
+    },
+    {
+      id: 10,
+      name: "vergalhão",
+      image: VERGALHAO,
+      description: "Vergalhões de aço para construção civil",
+    },
+    {
+      id: 11,
+      name: "cantoneira",
+      image: CANTONEIRA,
+      description: "Cantoneiras metálicas para reforço estrutural",
+    },
+    {
+      id: 12,
+      name: "treliça",
+      image: TRELIÇA,
+      description: "Treliças metálicas para coberturas e estruturas",
+    },
+    {
+      id: 13,
+      name: "chapas metálicas",
+      image: CHAPAS_METALICAS,
+      description: "Chapas metálicas em diversos tamanhos e espessuras",
+    },
+    {
+      id: 14,
+      name: "tubo redondo",
+      image: TUBO_REDONDO,
+      description: "Tubos redondos para estruturas e aplicações diversas",
+    },
+  ];
+
+  const content = {
+    hero: {
+      title: "Do aço à estrutura tudo em um só lugar",
+      subtitle:
+        "Soluções completas em metalurgia para o Norte e Nordeste do Brasil",
+    },
+    products: {
+      title: "NOSSOS PRODUTOS",
+      subtitle: "",
+    },
+    services: {
+      title: "Nossos Serviços",
+      subtitle:
+        "Soluções completas em estruturas metálicas para todos os tipos de projetos",
+    },
+    gallery: {
+      title: "Galeria de Fotos",
+      subtitle: "Conheça alguns dos nossos projetos realizados",
+    },
+  };
 
   const handleOpenModalImage = (index: number) => {
     setIndexImag(index);
@@ -52,6 +173,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <style jsx global>{`
+        .products-swiper {
+          padding-bottom: 40px !important;
+          overflow: visible !important;
+        }
+      `}</style>
       <DetailsComponent
         initialIndex={indeImage}
         open={open}
@@ -59,44 +186,88 @@ export default function Home() {
       />
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/98 backdrop-blur-md shadow-lg"
-            : "bg-white/95 backdrop-blur-md"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md shadow-lg ${isScrolled ? "bg-[#fff]" : "bg-white/40"}`}
       >
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="h-[50px] bg-[#D82224] w-full flex items-center px-4">
+          <div className="container mx-auto flex justify-between items-center">
+            <a
+              href="https://maps.google.com/?q=R.+22,+N°50+-+Potosi,+Balsas+-+MA,+65800-000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-200 transition-colors text-sm flex items-center gap-2"
+            >
+              <MapPin size={22} />
+              <div>
+                <div className="font-semibold">Balsas - MA</div>
+                <div className="text-xs opacity-90">
+                  R. 22, N°50 - Potosi, 65800-000
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://www.instagram.com/aco_moreira/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              <Instagram size={20} />
+            </a>
+          </div>
+        </div>
+        <nav className="container mx-auto px-4 py-4 flex justify-between items-center ">
           <div className="flex flex-col">
             <Image src={Logo} alt="Logo Moreira" width={180} />
           </div>
 
-          <ul className="hidden md:flex space-x-8">
-            {["home", "services", "gallery", "careers", "contact"].map(
-              (item) => (
-                <li key={item}>
-                  {item === "careers" ? (
-                    <a
-                      href="/careers"
-                      className="text-gray-700 hover:text-red-600 font-medium transition-colors duration-300 relative group"
+          <ul className="hidden md:flex space-x-8 justify-center items-center">
+            {[
+              "home",
+              "production",
+              "services",
+              "gallery",
+              "careers",
+              "requestQuote",
+            ].map((item) => (
+              <li key={item}>
+                {item === "careers" ? (
+                  <a
+                    href="/careers"
+                    className="text-gray-700 hover:text-red-600 font-medium transition-colors duration-300 relative group"
+                  >
+                    Trabalhe Conosco
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                ) : item === "requestQuote" ? (
+                  <a
+                    href="https://wa.me/559991128580?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20um%20or%C3%A7amento"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-[#D82224] text-white px-8 py-2 rounded-full font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      Trabalhe Conosco
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() => scrollToSection(item)}
-                      className="text-gray-700 hover:text-red-600 font-medium transition-colors duration-300 relative group"
-                    >
-                      {item === "home" && "Início"}
-                      {item === "services" && "Serviços"}
-                      {item === "gallery" && "Galeria"}
-                      {item === "contact" && "Contato"}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                    </button>
-                  )}
-                </li>
-              )
-            )}
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    Solicitar Orçamento
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(item)}
+                    className="text-gray-700 hover:text-red-600 font-medium transition-colors duration-300 relative group"
+                  >
+                    {item === "home" && "Início"}
+                    {item === "production" && "Produtos"}
+                    {item === "services" && "Serviços"}
+                    {item === "gallery" && "Galeria"}
+
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                )}
+              </li>
+            ))}
           </ul>
 
           <button
@@ -118,6 +289,8 @@ export default function Home() {
                 "gallery",
                 "careers",
                 "contact",
+                "requestQuote",
+                "contactUs",
               ].map((item) =>
                 item === "careers" ? (
                   <a
@@ -138,8 +311,10 @@ export default function Home() {
                     {item === "services" && "Serviços"}
                     {item === "gallery" && "Galeria"}
                     {item === "contact" && "Contato"}
+                    {item === "requestQuote" && "Solicitar Orçamento"}
+                    {item === "contactUs" && "Entre em Contato"}
                   </button>
-                )
+                ),
               )}
             </div>
           </div>
@@ -149,132 +324,111 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="home"
-        className="xl:min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden p-[50px] pb-[150px] pt-[200px] xl:p-0 xl:pt-0 xl:pb-0"
+        className="xl:min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden p-[50px] pb-[150px] pt-[200px] xl:p-0 xl:pt-0 xl:pb-0"
       >
-        <div className="absolute inset-0 opacity-30"></div>
-        <div className="container mx-auto px-4 grid xl:grid-cols-2 gap-28 items-center relative z-10">
-          <div className="space-y-6 me-8 w-full lg:w-auto ">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
-              <div className="text-[0.7em] font-medium">
-                Buscando soluções profissionais em estruturas metálicas e
-                concreto pré-moldado?
-              </div>
-
-              <div className="text-colo relative mt-4 font-extrabold">
-                METALÚRGICA MOREIRA
-                <span className="absolute bottom-0 left-0 w-full h-1 from-red-600 to-red-500 rounded"></span>
-              </div>
-              <p className="text-lg text-gray-600 font-normal leading-relaxed">
-                Garantindo o desenvolmento do seu negócio
-              </p>
-            </h1>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href=""
-                className="flex items-center justify-center gap-2 bg-background text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-              >
-                <Calculator size={20} />
-                Solicitar Orçamento
-              </a>
-              <a
-                href="http://wa.me/5586995898758"
-                className="flex items-center justify-center gap-2 border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-800 hover:text-white hover:-translate-y-1 transition-all duration-300"
-              >
-                <Phone size={20} />
-                Entre em Contato
-              </a>
-            </div>
-            <div className="flex">
-              <Link
-                href={
-                  "https://www.instagram.com/metalurgica_moreira_balsas?igsh=NHU0cDd6b283NzB6"
-                }
-              >
-                <Image src={Insta} alt="" />
-              </Link>
-              <Link href={"http://wa.me/5586995898758"}>
-                <Image src={Whatsapp} alt="" />
-              </Link>
-              {/* <Link href={"#"}>
-                <Image src={Facebook} alt="" />
-              </Link> */}
-            </div>
+        <Image
+          src={bgHeroSection}
+          alt="Background"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="relative z-10 text-center text-white max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            {content.hero.title}
+          </h1>
+          <p className="text-lg md:text-xl mb-8">{content.hero.subtitle}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => scrollToSection("services")}
+              className="bg-[#D82224] text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors"
+            >
+              Nossos Serviços
+            </button>
+            <a
+              href="/products"
+              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition-colors"
+            >
+              Nossos Produtos
+            </a>
           </div>
-          <div className="relative hidden xl:inline-block">
-            <Image
-              src={SectionImage}
-              alt="Estrutura Metálica"
-              width={600}
-              height={500}
-              className="rounded-2xl hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown size={32} className="text-gray-600" />
         </div>
       </section>
 
-      <section className="flex flex-col-reverse xl:flex-row justify-end items-center relative overflow-hidden">
-        <div className="xl:w-[60%] text-[#fff] bg-background p-[50px] xl:h-[1500px] xl:rounded-[100%] xl:absolute left-[-200px] xl:flex justify-center items-center">
-          <section className="w-full xl:w-[45%]">
-            <div className="mb-[50px]">
-              <h1 className="text-[3.5em] font-bold">ONDE ATUAMOS</h1>
-              <h5>Nas seguintes região do Brasil</h5>
-            </div>
-            <p className="text-[1.3em] font-light">
-              <strong className="font-bold">Metalúrgica Moreira</strong> está
-              presente estrategicamente nas regiões Norte e Nordeste do Brasil,
-              oferecendo soluções metalúrgicas sob medida com agilidade,
-              qualidade e compromisso
-            </p>
-
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="flex items-center mt-[70px] justify-center gap-2 bg-[#fff] text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-            >
-              <Calculator size={20} />
-              Solicitar Orçamento
-            </button>
-          </section>
-        </div>
-        <div className="xl:w-[50%] xl:ps-[100px] xl:pt-[100px] p-[50px] xl:p-0">
-          <div className="xl:w-full flex xl:flex justify-center items-center">
-            <Image src={MapNot} alt="" className="w-[70%] " />
+      <section
+        id="production"
+        className="py-20 pb-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+              {content.products.title}
+            </h2>
           </div>
-          <section className="p-5 xl:flex gap-[10%] grid grid-cols-2">
-            {[
-              ["Acre (AC)", "Amapá (AP)", "Amazonas (AM)", "Pará (PA)"],
-              [
-                "Rondônia (RO)",
-                "Roraima (RR)",
-                "Tocantins (TO)",
-                "Alagoas (AL)",
-              ],
-              ["Bahia (BA)", "Ceará (CE)", "Maranhão (MA)", "Paraíba (PB)"],
-              ["Piauí (PI)", "Rio Grande do Norte (RN)", "Sergipe (SE)"],
-            ].map((item, index) => (
-              <ul key={index}>
-                {item.map((subItem, index) => (
-                  <li className="mb-2" key={index}>
-                    {subItem}
-                  </li>
-                ))}
-              </ul>
+
+          {/* Swiper de Produtos */}
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={2}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            speed={800}
+            loop={true}
+            modules={[Autoplay]}
+            className="mySwiper products-swiper"
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product.id} className="px-10">
+                <div className="bg-gray-800 w-[87%] rounded-2xl overflow-hidden hover:bg-gray-700 transition-colors duration-300">
+                  <div className="h-60 bg-gray-700 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold text-white text-center capitalize">
+                      {product.name}
+                    </h3>
+                  </div>
+                </div>
+              </SwiperSlide>
             ))}
-          </section>
+          </Swiper>
         </div>
+
+        <a
+          href="/products"
+          className="mx-auto block bg-[#D82224] text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors w-fit"
+        >
+          Ver Mais Produtos
+        </a>
+        {/* Elementos decorativos */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D82224]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"></div>
       </section>
 
       <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Nossos Serviços
+              {content.services.title}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Soluções completas em estruturas metálicas para todos os tipos de
-              projetos
+              {content.services.subtitle}
             </p>
           </div>
 
@@ -311,7 +465,7 @@ export default function Home() {
                 key={index}
                 className="text-center group hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="w-20 h-20 bg-background from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
+                <div className="w-20 h-20 bg-[#D82224] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg">
                   <feature.icon size={32} className="text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -329,11 +483,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Galeria de Fotos
+              {content.gallery.title}
             </h2>
-            <p className="text-lg text-gray-600">
-              Conheça alguns dos nossos projetos realizados
-            </p>
+            <p className="text-lg text-gray-600">{content.gallery.subtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -398,7 +550,17 @@ export default function Home() {
                   {
                     icon: Phone,
                     title: "Telefone",
-                    info: "(99) 98814-7920 / (99) 98451-0890 / (99) 99144-6287",
+                    info: [
+                      "(99) 99112-8580 - Revenda",
+                      "(99) 98814-7920",
+                      "(99) 98451-0890",
+                      "(99) 99144-6287",
+                    ],
+                  },
+                  {
+                    icon: "envelope",
+                    title: "Email",
+                    info: "contato@acomoreira.com.br",
                   },
                   {
                     icon: "map-pin",
@@ -433,23 +595,27 @@ export default function Home() {
                         </svg>
                       )}
                     </div>
+
                     <div>
                       <h4 className="font-semibold text-gray-800">
                         {contact.title}
                       </h4>
-                      <p className="text-gray-600">{contact.info}</p>
+
+                      {Array.isArray(contact.info) ? (
+                        contact.info.map((tel) => <p key={tel}>{tel}</p>)
+                      ) : (
+                        <p>{contact.info}</p>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl h-[400px] xl:h-0">
+            <div className="bg-gray-50 rounded-2xl h-[400px] xl:h-auto">
               <iframe
                 className="w-full h-full"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.5987340788447!2d-46.0394201!3d-7.509470899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92d5ef60c6a2f87b%3A0x5a00d29b7df8f416!2sMetal%C3%BArgica%20Moreira!5e0!3m2!1spt-BR!2sbr!4v1754004927875!5m2!1spt-BR!2sbr"
-                // width="760"
-                // height="450"
                 loading="lazy"
               ></iframe>
               {/* <form onSubmit={handleSubmit} className="space-y-6">
@@ -540,9 +706,9 @@ export default function Home() {
               <div className="space-y-2 text-gray-300">
                 <p className="flex items-center gap-2">
                   <Phone size={16} />
-                  (99) 99144-6287
+                  (99) 99112-8580
                 </p>
-                
+
                 <p className="flex items-center gap-2">
                   <svg
                     className="w-4 h-4"
@@ -562,9 +728,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-gray-700 pt-8 text-center text-gray-300">
-            <p>
-              &copy; 2025 Metalugica - Moreira. Todos os direitos reservados.
-            </p>
+            <p>&copy; 2025 Aço Moreira. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
