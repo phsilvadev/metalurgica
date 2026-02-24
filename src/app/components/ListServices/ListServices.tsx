@@ -150,7 +150,7 @@ const ListServices = () => {
             <SwiperSlide key={index}>
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg h-[360px]"
+                className="bg-white rounded-2xl overflow-hidden shadow-lg h-auto min-h-[360px]"
               >
                 <div className="p-6">
                   <h3 className="text-xl  font-semibold text-gray-800 mb-3">

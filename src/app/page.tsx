@@ -368,8 +368,8 @@ export default function Home() {
 
           {/* Swiper de Produtos */}
           <Swiper
-            slidesPerView={4}
-            spaceBetween={2}
+            slidesPerView={1}
+            spaceBetween={20}
             breakpoints={{
               640: {
                 slidesPerView: 2,
