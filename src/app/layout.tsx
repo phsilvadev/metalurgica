@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,8 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <Head>
-        <link rel="canonical" href="https://www.acomoreira.com.br" />
+      <head>
         <Link rel="preconnect" href="https://fonts.googleapis.com" />
         <Link rel="preconnect" href="https://fonts.gstatic.com" />
         <Link
