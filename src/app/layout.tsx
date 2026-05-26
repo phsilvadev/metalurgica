@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   keywords:
     "estruturas metálicas, Balsas MA, aço moreira, construção metálica, galpões metálicos, coberturas metálicas, torres metálicas, telecomunicações",
   authors: [{ name: "Aço Moreira" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "Aço Moreira - Do aço á estrutura. Tudo em um só lugar",
@@ -28,7 +27,11 @@ export const metadata: Metadata = {
     description:
       "A força do aço com qualidade e confiança. Soluções completas em estruturas metálicas.",
   },
-  icons: "LOGO_METALURGICA.svg",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -39,15 +42,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        <Link rel="preconnect" href="https://fonts.googleapis.com" />
-        <Link rel="preconnect" href="https://fonts.gstatic.com" />
-        <Link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
         <link rel="canonical" href="https://www.acomoreira.com.br" />
         <meta name="theme-color" content="#dc2626" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </head>
       <body className={inter.className}>{children}</body>
     </html>
